@@ -28,7 +28,7 @@ func main() {
 	visitors = append(visitors, visitor)
 
 	visitor = NewVisitor("Петя")
-	visitor.AddSkills(Pop{}, House{})
+	visitor.AddSkills(Black{}, House{})
 	visitors = append(visitors, visitor)
 
 	visitor = NewVisitor("Коля")

@@ -1,15 +1,13 @@
-.PHONY: main
+.PHONY: build clean run
 
-main: clean
-	set -x \
-		&& GOOS=darwin GOARCH=amd64 gb build --tags macOS \
-		&& mv ./bin/club-darwin-amd64-macOS ./bin/club
+build: clean
+	@go build -o ./bin/club ./cmd/club
 
 clean:
-	rm -rf ./bin/*
+	@rm -rf ./bin/*
 
 race: clean
-	set -x \
-		&& GOOS=darwin GOARCH=amd64 gb build -race --tags macOS \
-		&& mv ./bin/club-darwin-amd64-macOS-race ./bin/club \
-		&& ./bin/club
+	@go build -race -o ./bin/club ./cmd/club
+
+run:
+	@go run ./cmd/club
