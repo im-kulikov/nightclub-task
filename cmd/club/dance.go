@@ -18,9 +18,20 @@ type Dance interface {
 // - Если человек не умеет танцевать под данную музыку, он идет в бар и пьет
 // водку.
 
+var drinks = []string{
+	"пьёт водку",
+	"накидывается Б-52",
+	"фигачит пиво",
+	"залпом выпивает коктейль",
+	"грустно смотрит на бармена",
+}
+
 func GoDance(dance Dance) string {
 	if dance == nil {
-		return "пьёт водку"
+		rand.Shuffle(len(drinks), func(i, j int) {
+			drinks[i], drinks[j] = drinks[j], drinks[i]
+		})
+		return drinks[0]
 	}
 
 	actions := []string{
