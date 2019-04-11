@@ -1,5 +1,10 @@
 package main
 
+import (
+	"math/rand"
+	"time"
+)
+
 func main() {
 	var (
 		club     *Nightclub
@@ -7,6 +12,8 @@ func main() {
 		visitor  *Visitor
 		visitors []*Visitor
 	)
+
+	rand.Seed(time.Now().UnixNano())
 
 	club = NewClub("My NightClub", 2)
 
@@ -22,6 +29,14 @@ func main() {
 	club.SetPlaylist(p)
 
 	visitors = make([]*Visitor, 0)
+
+	visitor = NewVisitor("Света")
+	visitor.AddSkills(Pop{}, Rnb{})
+	visitors = append(visitors, visitor)
+
+	visitor = NewVisitor("Даша")
+	visitor.AddSkills(House{}, Pop{})
+	visitors = append(visitors, visitor)
 
 	visitor = NewVisitor("Вася")
 	visitor.AddSkills(Pop{}, Black{})

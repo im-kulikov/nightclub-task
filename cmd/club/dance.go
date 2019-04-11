@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math/rand"
 	"strings"
 )
 
@@ -22,14 +23,20 @@ func GoDance(dance Dance) string {
 		return "пьёт водку"
 	}
 
-	action := strings.Join([]string{
+	actions := []string{
 		dance.moveHead(),
 		dance.moveArms(),
 		dance.moveBody(),
 		dance.moveLegs(),
-	}, ", ")
+	}
 
-	return "танцует: " + action + "."
+	rand.Shuffle(len(actions), func(i, j int) {
+		actions[i], actions[j] = actions[j], actions[i]
+	})
+
+	action := strings.Join(actions, ", ")
+
+	return "танцует: " + strings.ToLower(action) + "."
 }
 
 func GetGenre(dance Dance) int {
